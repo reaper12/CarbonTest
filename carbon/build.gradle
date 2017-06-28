@@ -1,0 +1,51 @@
+apply plugin: 'com.android.library'
+apply plugin: 'me.tatarka.retrolambda'
+// apply from: 'maven-push.gradle'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.3'
+
+    dataBinding {
+        enabled = true
+    }
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 42
+        versionName "0.14.0"
+        renderscriptTargetApi 20
+        renderscriptSupportModeEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    retrolambda {
+        defaultMethods true
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:gridlayout-v7:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'de.greenrobot:androidsvg:1.2.2-beta-1-tweaked-2'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0'
+    compile 'com.annimon:stream:1.1.4'
+}
+
+ext.GROUP="com.ht"
+ext.VERSION_NAME="1.0.0"
+ext.ARTIFACT_ID="lib_carbon"
+
+apply from: "maven-push.gradle"
